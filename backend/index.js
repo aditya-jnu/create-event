@@ -22,8 +22,7 @@ app.use(session({
   cookie: { secure: process.env.NODE_ENV === 'production' },
 }));
 
-const Base_Url = "https://create-event-server.onrender.com"
-const REDIRECT_URI = `${Base_Url}/auth/google/callback`;
+const REDIRECT_URI = 'http://localhost:5000/auth/google/callback';
 /********** Google OAuth initiation **********/
 app.get('/auth/google', (req, res) => {
   console.log("Hi at auth/google")
@@ -44,7 +43,7 @@ app.get('/auth/google/callback', async (req, res) => {
           client_id: process.env.CLIENT_ID,
           client_secret: process.env.CLIENT_SECRET,
           code,
-          redirect_uri: 'https://create-event-server.onrender.com/auth/google/callback',
+          redirect_uri: 'http://localhost:5000/auth/google/callback',
           grant_type: 'authorization_code',
       });
       const { access_token } = data;
